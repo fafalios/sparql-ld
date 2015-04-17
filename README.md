@@ -14,7 +14,7 @@ A distinctive characteristic of this extension is that it enables to
 query and integrate even data in datasets returned by a portion of the query,
 i.e. discovered at query-execution time. 
 
-This extension has been tested with Jena ARQ 2.13.0 (nevertheless, it may also work with other Jena ARQ releases). 
+This extension has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
  
 ## Source code
 
@@ -24,7 +24,7 @@ For implementing this extension, we created the following 3 classes:
 - main/com.hp.hpl.jena.sparql.engine.http.**ServiceQueryExecutionCache**
 - main/arq.**service_extension_query_examples**
 
-We also updated the following 4 classes of Jena Jena 2.13.0 ARQ:
+We also updated the following 4 classes of Jena 2.13.0 ARQ:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**Service**
 - main/com.hp.hpl.jena.sparql.engine.main.iterator.**QueryIterService**
