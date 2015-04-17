@@ -14,11 +14,11 @@ A distinctive characteristic of this extension is that it enables to
 query and integrate even data in datasets returned by a portion of the query,
 i.e. discovered at query-execution time. 
 
-This extension has been tested with Jena ARQ 2.13.0 (nevertheless, it **may** also work with other Jena ARQ releases). 
+This extension has been tested with Jena ARQ 2.13.0 (nevertheless, it may also work with other Jena ARQ releases). 
  
 ## New and updated files 
 
-This repository contains only the *new* and the *updated* classes of Jena 2.13.0 ARQ.
+This repository contains only the *new* and the *updated* classes of Jena 2.13.0 ARQ extension.
 Specifically, the following new classes have been created:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
