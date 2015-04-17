@@ -60,27 +60,28 @@ We also provide a zip containing the *original* Jena 2.13.0 ARQ sources
 ## Example Query
 
 The following query 
-can be answered by an implementation of the proposed extension.
+can be answered by an implementation of this extension.
 The query returns all co-authors of Pavlos Fafalios (main contributor of this repository)
 together with their number of publications and the number of different conferences
 in which they have a publication.
 Notice that this query combines and integrates:
 i) data embedded in the HTML Web page http://users.ics.forth.gr/~fafalios as RDFa (lines 3-4),
-ii) data coming from dereferenceable URIs derived at *query-execution* time (line 5), and
-iii) data coming by querying another endpoint (lines 6-8).
+ii) data coming from dereferenceable URIs derived at *query-execution* time (lines 5-6), and
+iii) data coming by querying another endpoint (lines 7-9).
 Note also that this query can be answered by any endpoint that implements
-the proposed extension (independently of its "local" contents).
+this extension (independently of its "local" contents).
 
 ```
-1. SELECT DISTINCT ?authorURI (count(?paper) AS ?numOfPapers)
-2.                            (count(distinct ?series) AS ?numOfDiffConfs) WHERE {
-3.   SERVICE <http://users.ics.forth.gr/~fafalios/> {
-4.     ?p <http://purl.org/dc/terms/creator> ?authorURI }
-5.   SERVICE ?authorURI { ?paper <http://purl.org/dc/elements/1.1/creator> ?authorURI }
-6.   SERVICE <http://dblp.l3s.de/d2r/sparql> {
-7.     ?p2 <http://purl.org/dc/elements/1.1/creator> ?authorURI .
-8.     ?p2 <http://swrc.ontoware.org/ontology#series> ?series  }
-9. } GROUP BY ?authorURI ORDER BY ?numOfPapers
+1.  SELECT DISTINCT ?authorURI (count(?paper) AS ?numOfPapers)
+2.                             (count(distinct ?series) AS ?numOfDiffConfs) WHERE {
+3.    SERVICE <http://users.ics.forth.gr/~fafalios/> {
+4.      ?p <http://purl.org/dc/terms/creator> ?authorURI }
+5.    SERVICE ?authorURI { 
+6.      ?paper <http://purl.org/dc/elements/1.1/creator> ?authorURI }
+7.    SERVICE <http://dblp.l3s.de/d2r/sparql> {
+8.      ?p2 <http://purl.org/dc/elements/1.1/creator> ?authorURI .
+9.      ?p2 <http://swrc.ontoware.org/ontology#series> ?series  }
+10. } GROUP BY ?authorURI ORDER BY ?numOfPapers
 ```
 
 
