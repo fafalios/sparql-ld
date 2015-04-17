@@ -16,28 +16,28 @@ i.e. discovered at query-execution time.
 
 This extension has been tested with Jena ARQ 2.13.0 (nevertheless, it may also work with other Jena ARQ releases). 
  
-## New and updated files 
+## Source code
 
-This repository contains only the *new* and the *updated* classes of Jena 2.13.0 ARQ extension.
-Specifically, the following new classes have been created:
+For implementing this extension, we created the following 3 classes:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
 - main/com.hp.hpl.jena.sparql.engine.http.**ServiceQueryExecutionCache**
 - main/arq.**service_extension_query_examples**
 
-and the following classes have been updated:
+We also updated the following 4 classes of Jena Jena 2.13.0 ARQ:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**Service**
 - main/com.hp.hpl.jena.sparql.engine.main.iterator.**QueryIterService**
 - main/com.hp.hpl.jena.sparql.engine.ref.**EvaluatorDispatch**
 - test/com.hp.hpl.jena.sparql.engine.http.**TestService**
 
-We also provide a zip containing the *original* Jena 2.13.0 ARQ sources
+This repository contains only the above 7 classes. 
+We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015). 
 
 ## Installation
 
-- Download the original Jena 2.13.0 ARQ sources 
+- Download the original Jena 2.13.0 ARQ source code
 - Add the 3 new classes
 - Replace the 4 updated classes
 - Add the following dependency to pom.xml (which allows to load and query RDFa data):
