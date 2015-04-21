@@ -15,6 +15,8 @@ query and integrate even data in datasets returned by a portion of the query,
 i.e. discovered at query-execution time. 
 
 This extension has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
+
+A SPARQL endpoint that realizes this extension is available online at http://139.91.183.72/sparql-service-extension.
  
 ## Example Query
 
