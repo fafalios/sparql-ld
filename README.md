@@ -62,7 +62,8 @@ We have also updated the following 4 classes of Jena 2.13.0 ARQ:
 
 This repository contains only the above 7 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
-(as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015). 
+(as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
+as well as the extended Jena ARQ jar file. 
 
 ## Installation
 
@@ -86,4 +87,6 @@ We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 - Build the sources
 - Try to run the main class "arq.service_extension_query_examples"
 
+or:
 
+- Directly use the provided extended Jena ARQ jar. 
