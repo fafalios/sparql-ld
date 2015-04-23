@@ -63,7 +63,7 @@ We have also updated the following 4 classes of Jena 2.13.0 ARQ:
 This repository contains only the above 7 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
-as well as the extended Jena ARQ jar file. 
+as well as the extended, already built, Jena ARQ JAR file. 
 
 ## Installation
 
@@ -89,4 +89,4 @@ as well as the extended Jena ARQ jar file.
 
 or:
 
-- Directly use the provided extended Jena ARQ jar. 
+- Directly use the provided (already built) extended Jena ARQ jar. 
