@@ -71,7 +71,7 @@ public class ReadRDFFromIRI {
 
         /* First check the IRI file extension */
         if (iri.toLowerCase().endsWith(".ntriples") || iri.toLowerCase().endsWith(".nt")) {
-            System.out.println("# Reading a '.nt' file...");
+            System.out.println("# Reading a N-Triples file...");
             model.read(iri, "N-TRIPLE");
             qe = QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
@@ -84,10 +84,19 @@ public class ReadRDFFromIRI {
             setContentType(); // get the IRI content type
             System.out.println("# IRI Content Type: " + contentType);
             if (contentType.contains("text/html") || contentType.contains("application/xhtml+xml")) {
-                readRDFa();
-            } else if (contentType.contains("application/ld+json") || contentType.contains("application/json")) {
-                System.out.println("# Trying to read a 'json' file...");
+                System.out.println("# Checking if the URI contains 'RDFa' data...");
+                JenaRdfaReader.inject();
+                model.read(iri, "RDFA");
+                qe = QueryExecutionFactory.create(query, model);
+                resultSet = qe.execSelect();
+            } else if (contentType.contains("application/ld+json") || contentType.contains("application/json") || contentType.contains("application/json+ld")) {
+                System.out.println("# Trying to read a 'json-ld' file...");
                 model.read(iri, "JSON-LD");
+                qe = QueryExecutionFactory.create(query, model);
+                resultSet = qe.execSelect();
+            } else if (contentType.contains("application/n-triples")) {
+                System.out.println("# Reading a N-Triples file...");
+                model.read(iri, "N-TRIPLE");
                 qe = QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else {
@@ -99,25 +108,9 @@ public class ReadRDFFromIRI {
     }
 
     /**
-     * Read RDF data embedded in an HTML Web page as RDFa using the Semargl
-     * framework (https://github.com/levkhomich/semargl).
-     *
-     */
-    private void readRDFa() {
-
-        System.out.println("# Checking if the URI contains 'RDFa' data...");
-
-        JenaRdfaReader.inject();
-        Model model = ModelFactory.createDefaultModel();
-        model.read(iri, "RDFA");
-
-        qe = QueryExecutionFactory.create(query, model);
-        resultSet = qe.execSelect();
-    }
-
-    /**
-     * Read the IRI content type by opening an HTTP connection.
-     *
+     * Read the IRI content type by opening an HTTP connection. We set the value
+     * 'application/rdf+xml' to the ACCEPT request property for handling
+     * dereferenceable IRIs.
      */
     public void setContentType() {
         contentType = "";
@@ -125,6 +118,7 @@ public class ReadRDFFromIRI {
             URL url = new URL(iri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("HEAD");
+            connection.setRequestProperty("ACCEPT", "application/rdf+xml");
             connection.connect();
             contentType = connection.getContentType();
         } catch (MalformedURLException ex) {
