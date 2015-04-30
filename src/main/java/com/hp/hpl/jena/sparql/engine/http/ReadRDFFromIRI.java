@@ -75,6 +75,11 @@ public class ReadRDFFromIRI {
             model.read(iri, "N-TRIPLE");
             qe = QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
+        } else if (iri.toLowerCase().endsWith(".n3") ) {
+            System.out.println("# Reading a Notation3 (N3) file...");
+            model.read(iri);
+            qe = QueryExecutionFactory.create(query, model);
+            resultSet = qe.execSelect();
         } else if (iri.toLowerCase().endsWith(".json") || iri.toLowerCase().endsWith(".jsod") || iri.toLowerCase().endsWith(".jsonld")) {
             System.out.println("# Trying to read a 'json-ld' file...");
             model.read(iri, "JSON-LD");
@@ -97,6 +102,11 @@ public class ReadRDFFromIRI {
             } else if (contentType.contains("application/n-triples")) {
                 System.out.println("# Reading a N-Triples file...");
                 model.read(iri, "N-TRIPLE");
+                qe = QueryExecutionFactory.create(query, model);
+                resultSet = qe.execSelect();
+            } else if (contentType.contains("text/n3")) {
+                System.out.println("# Reading a Notation3 (N3) file...");
+                model.read(iri);
                 qe = QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else {
