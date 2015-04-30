@@ -23,7 +23,7 @@ A SPARQL endpoint that realizes this extension is available online at http://139
 The following query 
 can be answered by an implementation of this extension.
 The query returns all co-authors of Pavlos Fafalios (main contributor of this repository)
-together with their number of publications and the number of different conferences
+together with the number of their publications and the number of different conferences
 in which they have a publication.
 Notice that this query combines and integrates:
 i) data embedded in the HTML Web page http://users.ics.forth.gr/~fafalios as RDFa (lines 3-4),
