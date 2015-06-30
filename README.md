@@ -1,4 +1,4 @@
-# Jena ARQ SERVICE Extension for Querying the Web of Data
+# SPARQL-LD: A SPARQL Extension for Fetching and Querying Linked Data
 
 This Jena ARQ SERVICE extension allows to query and integrate in the same SPARQL query:
 - *data stored in the (local) endpoint*
@@ -10,18 +10,18 @@ This Jena ARQ SERVICE extension allows to query and integrate in the same SPARQL
 
 by simply using the SERVICE operator of [SPARQL 1.1 Federated Query](http://www.w3.org/TR/sparql11-federated-query/).
 
-A distinctive characteristic of this extension is that it enables to
+A distinctive characteristic of SPARQL-LD is that it enables to
 query and integrate even data in datasets returned by a portion of the query,
 i.e. discovered at query-execution time. 
 
-This extension has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
+SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
 
-A SPARQL endpoint that realizes this extension is available online at http://139.91.183.72/sparql-service-extension.
+A SPARQL endpoint that realizes SPARQL-LD is available online at http://139.91.183.72/sparql-ld-endpoint.
  
 ## Example Query
 
 The following query 
-can be answered by an implementation of this extension.
+can be answered by an implementation of SPARQL-LD.
 The query returns all co-authors of Pavlos Fafalios (main contributor of this repository)
 together with the number of their publications and the number of different conferences
 in which they have a publication.
@@ -47,7 +47,7 @@ this extension (independently of its "local" contents).
  
 ## Source code
 
-For implementing this extension, we have created the following 3 classes:
+For implementing SPARQL-LD, we have created the following 3 classes:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
 - main/com.hp.hpl.jena.sparql.engine.http.**ServiceQueryExecutionCache**
