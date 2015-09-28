@@ -47,14 +47,14 @@ this extension (independently of its "local" contents).
  
 ## Source code
 
-For implementing SPARQL-LD, we have created the following 3 classes:
+For implementing SPARQL-LD, we have created the following 4 classes:
 
 - com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
 - com.hp.hpl.jena.sparql.engine.http.**ResourcesCache**
 - com.hp.hpl.jena.sparql.engine.http.**EndpointsIndex**
 - arq.**SPARQL_LD_QueryExamples**
 
-We have also updated the following 4 classes of Jena 2.13.0 ARQ:
+We have also updated the following 2 classes of Jena 2.13.0 ARQ:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**Service**
 - main/com.hp.hpl.jena.query.**QueryExecutionFactory**
