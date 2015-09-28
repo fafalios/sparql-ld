@@ -16,7 +16,7 @@ i.e. discovered at query-execution time.
 
 SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
 
-A SPARQL endpoint that realizes SPARQL-LD is available online at http://139.91.183.72/sparql-ld-endpoint.
+A SPARQL endpoint that realizes SPARQL-LD is available online at http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
  
 ## Example Query
 
@@ -69,6 +69,7 @@ as well as the extended, already built, Jena ARQ JAR file.
 - Download the original Jena 2.13.0 ARQ source code
 - Add the 4 new classes
 - Replace the 2 updated classes
+- Add the *endpoints.lst* file to the project folder (same level as pom.xml)
 - Add the following dependency to pom.xml (which allows to load and query RDFa data):
 ```
  <dependency>
@@ -88,4 +89,4 @@ as well as the extended, already built, Jena ARQ JAR file.
 
 or:
 
-- Directly use the provided (already built) extended Jena ARQ jar. 
+- Directly use the provided (already built) extended Jena ARQ jar (**jena-arq-2.13.0_SPARQL-LD**). 
