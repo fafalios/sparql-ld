@@ -49,18 +49,17 @@ this extension (independently of its "local" contents).
 
 For implementing SPARQL-LD, we have created the following 3 classes:
 
-- main/com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
-- main/com.hp.hpl.jena.sparql.engine.http.**ServiceQueryExecutionCache**
-- main/arq.**service_extension_query_examples**
+- com.hp.hpl.jena.sparql.engine.http.**ReadRDFFromIRI**
+- com.hp.hpl.jena.sparql.engine.http.**ResourcesCache**
+- com.hp.hpl.jena.sparql.engine.http.**EndpointsIndex**
+- arq.**SPARQL_LD_QueryExamples**
 
 We have also updated the following 4 classes of Jena 2.13.0 ARQ:
 
 - main/com.hp.hpl.jena.sparql.engine.http.**Service**
-- main/com.hp.hpl.jena.sparql.engine.main.iterator.**QueryIterService**
-- main/com.hp.hpl.jena.sparql.engine.ref.**EvaluatorDispatch**
-- test/com.hp.hpl.jena.sparql.engine.http.**TestService**
+- main/com.hp.hpl.jena.query.**QueryExecutionFactory**
 
-This repository contains only the above 7 classes. 
+This repository contains only the above 6 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
 as well as the extended, already built, Jena ARQ JAR file. 
@@ -68,8 +67,8 @@ as well as the extended, already built, Jena ARQ JAR file.
 ## Installation
 
 - Download the original Jena 2.13.0 ARQ source code
-- Add the 3 new classes
-- Replace the 4 updated classes
+- Add the 4 new classes
+- Replace the 2 updated classes
 - Add the following dependency to pom.xml (which allows to load and query RDFa data):
 ```
  <dependency>
@@ -85,7 +84,7 @@ as well as the extended, already built, Jena ARQ JAR file.
  </dependency>
 ```	
 - Build the sources
-- Try to run the main class "arq.service_extension_query_examples"
+- Try to run the main class "arq.SPARQL_LD_QueryExamples"
 
 or:
 

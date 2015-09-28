@@ -33,10 +33,10 @@ import java.util.logging.Logger;
 import org.semarglproject.jena.rdf.rdfa.JenaRdfaReader;
 
 /**
- * Reads and queries the RDF data that may exist in the IRI given to the SERVICE
- * operator.
+ * Fetches, reads and queries the RDF data that may exist in the IRI given to
+ * the SERVICE operator.
  *
- * @author Pavlos Fafalios (fafalios@ics.forth.gr, fafalios@csd.uoc.gr)
+ * @author Pavlos Fafalios (fafalios@ics.forth.gr, fafalios.pavlos@gmail.com)
  */
 public class ReadRDFFromIRI {
 
@@ -46,6 +46,7 @@ public class ReadRDFFromIRI {
     private ResultSet resultSet; // A ResultSet object containing the results of running the query to the IRI.
     private QueryExecution qe; // A QueryExecution object for running the query to the model that corresponds to the IRI.
     private String contentType; // The IRI content type
+    private Model model; // The RDF model of the IRI
 
     /**
      * Create a new object for reading and querying the RDF data that may exist
@@ -67,7 +68,7 @@ public class ReadRDFFromIRI {
      *
      */
     private void read() {
-        Model model = ModelFactory.createDefaultModel();
+        model = ModelFactory.createDefaultModel();
 
         /* First check the IRI file extension */
         if (iri.toLowerCase().endsWith(".ntriples") || iri.toLowerCase().endsWith(".nt")) {
@@ -75,7 +76,7 @@ public class ReadRDFFromIRI {
             model.read(iri, "N-TRIPLE");
             qe = QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
-        } else if (iri.toLowerCase().endsWith(".n3") ) {
+        } else if (iri.toLowerCase().endsWith(".n3")) {
             System.out.println("# Reading a Notation3 (N3) file...");
             model.read(iri);
             qe = QueryExecutionFactory.create(query, model);
@@ -131,6 +132,9 @@ public class ReadRDFFromIRI {
             connection.setRequestProperty("ACCEPT", "application/rdf+xml");
             connection.connect();
             contentType = connection.getContentType();
+            if (contentType == null) {
+                contentType = "";
+            }
         } catch (MalformedURLException ex) {
             Logger.getLogger(ReadRDFFromIRI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -183,6 +187,14 @@ public class ReadRDFFromIRI {
         this.resultSet = resultSet;
     }
 
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
     /**
      * Run an ASK query at the IRI for checking if it corresponds to a SPARQL
      * endpoint.
@@ -190,6 +202,7 @@ public class ReadRDFFromIRI {
      */
     public static boolean isEndpoint(String uri) {
         try {
+            System.out.println("# Checking if the IRI corresponds to a SPARQL endpoint...Sending an ASK query...");
             QueryExecution qexecTest = QueryExecutionFactory.sparqlService(uri, QueryFactory.create(askQuery));
             boolean resultsTest = qexecTest.execAsk();
             return true;
