@@ -42,7 +42,7 @@ Note also that this query can be answered by any endpoint that implements
 this extension (independently of its "local" contents).
 
 ```
-1.  SELECT DISTINCT ?authorURI (count(?paper) AS ?numOfPapers)
+1.  SELECT DISTINCT ?authorURI (count(distinct ?paper)  AS ?numOfPapers)
 2.                             (count(distinct ?series) AS ?numOfDiffConfs) WHERE {
 3.    SERVICE <http://users.ics.forth.gr/~fafalios/> {
 4.      ?p <http://purl.org/dc/terms/creator> ?authorURI }
