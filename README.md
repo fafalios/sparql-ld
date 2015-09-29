@@ -1,6 +1,6 @@
 # SPARQL-LD: A SPARQL Extension for Fetching and Querying Linked Data
 
-This Jena ARQ SERVICE extension allows to query and integrate in the same SPARQL query:
+This Jena ARQ SERVICE extension allows to fetch, query and integrate in the same SPARQL query:
 - *data stored in the (local) endpoint*
 - *data coming from online RDF files (in any standard format)*
 - *data embedded in Web pages as RDFa*
@@ -10,9 +10,18 @@ This Jena ARQ SERVICE extension allows to query and integrate in the same SPARQL
 
 by simply using the SERVICE operator of [SPARQL 1.1 Federated Query](http://www.w3.org/TR/sparql11-federated-query/).
 
-A distinctive characteristic of SPARQL-LD is that it enables to
-query and integrate even data in datasets returned by a portion of the query,
+A distinctive characteristic of SPARQL-LD is that it enables to 
+fetch and query even data in datasets returned by a portion of the query,
 i.e. discovered at query-execution time. 
+
+SPARQL-LD is actually a generalization of SPARQL
+in the sense that every query that can be answered by the original SPARQL can
+be also answered by SPARQL-LD. Specifically, if the IRI given to the service
+operator corresponds to a SPARQL endpoint, then it works exactly as the original
+SPARQL (the remote endpoint evaluates the query and returns the result).
+Otherwise, instead of returning an error (and no bindings), it tries to fetch and
+query the triples that may exist in the given resource.
+
 
 SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
 
@@ -62,7 +71,7 @@ We have also updated the following 2 classes of Jena 2.13.0 ARQ:
 This repository contains only the above 6 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
-as well as the extended, already built, Jena ARQ JAR file. 
+as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPARQL-LD.jar**). 
 
 ## Installation
 
@@ -89,4 +98,4 @@ as well as the extended, already built, Jena ARQ JAR file.
 
 or:
 
-- Directly use the provided (already built) extended Jena ARQ jar (**jena-arq-2.13.0_SPARQL-LD**). 
+- Directly use the provided (already built) extended Jena ARQ jar (**jena-arq-2.13.0_SPARQL-LD.jar**). 
