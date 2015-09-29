@@ -65,13 +65,14 @@ For implementing SPARQL-LD, we have created the following 4 classes:
 
 We have also updated the following 2 classes of Jena 2.13.0 ARQ:
 
-- main/com.hp.hpl.jena.sparql.engine.http.**Service**
-- main/com.hp.hpl.jena.query.**QueryExecutionFactory**
+- com.hp.hpl.jena.sparql.engine.**QueryExecutionBase**
+- com.hp.hpl.jena.sparql.engine.http.**Service**
+
 
 This repository contains only the above 6 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
-as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPARQL-LD.jar**). 
+as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPARQL-LD-1.0.jar**). 
 
 ## Installation
 
@@ -100,4 +101,4 @@ or:
 
 - Directly use the provided (already built) extended Jena ARQ jar: 
 
-**jena-arq-2.13.0_SPARQL-LD.jar**
+**jena-arq-2.13.0_SPARQL-LD-1.0.jar**

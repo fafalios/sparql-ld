@@ -38,6 +38,7 @@ import com.hp.hpl.jena.sparql.algebra.OpAsQuery;
 import com.hp.hpl.jena.sparql.algebra.OpVars;
 import com.hp.hpl.jena.sparql.algebra.op.OpService;
 import com.hp.hpl.jena.sparql.core.Var;
+import com.hp.hpl.jena.sparql.engine.QueryExecutionBase;
 import com.hp.hpl.jena.sparql.engine.QueryIterator;
 import com.hp.hpl.jena.sparql.engine.Rename;
 import com.hp.hpl.jena.sparql.engine.iterator.QueryIter;
@@ -196,8 +197,8 @@ public class Service {
             IO.close(in);
         } else {
             // Check if the IRI exists in the index of known endpoints //
-            System.out.println("# Checking the index of known endpoints...Index size: " + QueryExecutionFactory.endpointIndex.getEndpoints().size());
-            if (QueryExecutionFactory.endpointIndex.inIndex(uri)) {
+            System.out.println("# Checking the index of known endpoints...Index size: " + QueryExecutionBase.endpointIndex.getEndpoints().size());
+            if (QueryExecutionBase.endpointIndex.inIndex(uri)) {
                 System.out.println("# The IRI \"" + uri + "\" is in the index! Sending the query...");
                 HttpQuery httpQuery = configureQuery(uri, context, query);
                 InputStream in = httpQuery.exec();
@@ -217,16 +218,16 @@ public class Service {
                     qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
                     IO.close(in);
                     System.out.println("# The SPARQL endpoint is being added in the index of known endpoints...");
-                    QueryExecutionFactory.endpointIndex.add(uri);
+                    QueryExecutionBase.endpointIndex.add(uri);
                     System.out.println("# Finished!\n");
                 } else { // the IRI is NOT a SPARQL endpoint
                     System.out.println("# The IRI is NOT a SPARQL endpoint. ");
-                    System.out.println("# Checking the cache of retrieved resources...Cache size: " + QueryExecutionFactory.cache.getIri2model().size());
+                    System.out.println("# Checking the cache of retrieved resources...Cache size: " + QueryExecutionBase.cache.getIri2model().size());
 
                     // Check if the IRI exists in the cache of retrieved resources //
-                    if (QueryExecutionFactory.cache.inCache(uri)) {
+                    if (QueryExecutionBase.cache.inCache(uri)) {
                         System.out.println("# The IRI \"" + uri + "\" exists in the cache! Getting its RDF model from the cache and running the query...");
-                        Model model = QueryExecutionFactory.cache.getModel(uri);
+                        Model model = QueryExecutionBase.cache.getModel(uri);
                         QueryExecution qe = QueryExecutionFactory.create(query, model);
                         ResultSet rs = qe.execSelect();
                         qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
@@ -238,7 +239,7 @@ public class Service {
                         qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
                         reader.close();
                         System.out.println("# The IRI and its RDF model are being added in the cache...");
-                        QueryExecutionFactory.cache.add(uri, reader.getModel()); // Add the RDF model to the temporary (request-score) cache
+                        QueryExecutionBase.cache.add(uri, reader.getModel()); // Add the RDF model to the temporary (request-score) cache
                         System.out.println("# Finished!\n");
                     }
                 }

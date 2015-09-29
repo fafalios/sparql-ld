@@ -81,4 +81,12 @@ public class ResourcesCache {
     public HashMap<String, Model> getIri2model() {
         return iri2model;
     }
+
+    /**
+     * Clear the cache.
+     *
+     */
+    public void clear() {
+        iri2model.clear();
+    }
 }
