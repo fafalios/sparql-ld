@@ -25,7 +25,7 @@ query the triples that may exist in the given resource.
 
 SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
 
-A SPARQL endpoint that realizes SPARQL-LD is available online at http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
+A SPARQL endpoint that realizes SPARQL-LD is available online at: http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
  
 ## Example Query
 
@@ -98,4 +98,6 @@ as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPA
 
 or:
 
-- Directly use the provided (already built) extended Jena ARQ jar (**jena-arq-2.13.0_SPARQL-LD.jar**). 
+- Directly use the provided (already built) extended Jena ARQ jar: 
+
+**jena-arq-2.13.0_SPARQL-LD.jar**

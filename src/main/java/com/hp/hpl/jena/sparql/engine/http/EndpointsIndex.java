@@ -39,17 +39,24 @@ public class EndpointsIndex {
      * A set containing the IRIs of the known SPARQL endpoints.
      */
     private HashSet<String> endpoints;
+    /* 
+     * The file containing the list of known SPARQL endpoints.
+     */
+    private String filepath;
 
     /**
-     * Initialize a new index by reading a list of endpoints from a file.
+     * Initialize a new index by reading a list of endpoints from a given file.
      *
+     * @param filepath The file path.
      */
-    public EndpointsIndex() {
-        try {
-            this.endpoints = new HashSet<>();
+    public EndpointsIndex(String file) {
 
-            String endpointIndexFilename = "endpoints.lst";
-            File fileDir = new File(endpointIndexFilename);
+        this.endpoints = new HashSet<>();
+        this.filepath = file;
+
+        try {
+
+            File fileDir = new File(filepath);
             try (BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                     new FileInputStream(fileDir), "UTF8"))) {
@@ -69,6 +76,14 @@ public class EndpointsIndex {
     }
 
     /**
+     * Initialize a new index by reading a list of endpoints from a file.
+     *
+     */
+    public EndpointsIndex() {
+        this("endpoints.lst");
+    }
+
+    /**
      * Add to the index the IRI of a SPARQL endpoint.
      *
      * @param endpointIRI The IRI of the SPARQL Endpoint.
@@ -76,7 +91,7 @@ public class EndpointsIndex {
     public void add(String endpointIRI) {
         endpoints.add(endpointIRI.trim().toLowerCase());
         try {
-            FileWriter fstream = new FileWriter("endpoints.lst", true);
+            FileWriter fstream = new FileWriter(filepath, true);
             try (BufferedWriter out = new BufferedWriter(fstream)) {
                 out.write(endpointIRI);
                 out.newLine();
@@ -108,5 +123,23 @@ public class EndpointsIndex {
      */
     public HashSet<String> getEndpoints() {
         return endpoints;
+    }
+
+    /**
+     * Return the file containing the list of known SPARQL endpoints..
+     *
+     * @return The file path.
+     */
+    public String getFilepath() {
+        return filepath;
+    }
+
+    /**
+     * Set the file containing the list of known SPARQL endpoints..
+     *
+     * @param filepath The file path.
+     */
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 }
