@@ -185,8 +185,9 @@ public class Service {
         query = OpAsQuery.asQuery(opRemote);
         Explain.explain("HTTP", query, context);
         String uri = op.getService().getURI();
-
         QueryIterator qIter = null;
+
+        // SPARQL-LD EXTENSION //
         System.out.println("# IRI: " + uri);
 
         if (uri.toLowerCase().equals("http://example.com:40000")) { // case of junit tests
@@ -196,44 +197,44 @@ public class Service {
             qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
             IO.close(in);
         } else {
-            // Check if the IRI exists in the index of known endpoints //
-            System.out.println("# Checking the index of known endpoints...Index size: " + QueryExecutionBase.endpointIndex.getEndpoints().size());
-            if (QueryExecutionBase.endpointIndex.inIndex(uri)) {
-                System.out.println("# The IRI \"" + uri + "\" is in the index! Sending the query...");
-                HttpQuery httpQuery = configureQuery(uri, context, query);
-                InputStream in = httpQuery.exec();
-                ResultSet rs = ResultSetFactory.fromXML(in);
+
+            System.out.println("# Checking the CACHE of already-retrieved resources... Cache size: " + QueryExecutionBase.cache.getIri2model().size());
+            if (QueryExecutionBase.cache.inCache(uri)) {
+                System.out.println("# The IRI \"" + uri + "\" EXISTS in the cache! Getting its RDF model from the cache and running the query...");
+                Model model = QueryExecutionBase.cache.getModel(uri);
+                QueryExecution qe = QueryExecutionFactory.create(query, model);
+                ResultSet rs = qe.execSelect();
                 qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
-                IO.close(in);
                 System.out.println("# Finished!\n");
             } else {
-                System.out.println("# The IRI \"" + uri + "\" is NOT in the index of known endpoints! ");
-                
-                // Check if the IRI corresponds to a SPARQL endpoint //
-                if (ReadRDFFromIRI.isEndpoint(uri)) { // if the IRI is a SPARQL endpoint
-                    System.out.println("# The IRI is a SPARQL endpoint. Sending the query...");
+                System.out.println("# The IRI \"" + uri + "\" does NOT exist in the cache! ");
+
+                System.out.println("# Checking the INDEX of known endpoints...Index size: " + QueryExecutionBase.endpointIndex.getEndpoints().size());
+                if (QueryExecutionBase.endpointIndex.inIndex(uri)) {
+                    System.out.println("# The IRI \"" + uri + "\" EXISTS in the index! Sending the query...");
                     HttpQuery httpQuery = configureQuery(uri, context, query);
                     InputStream in = httpQuery.exec();
                     ResultSet rs = ResultSetFactory.fromXML(in);
                     qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
                     IO.close(in);
-                    System.out.println("# The SPARQL endpoint is being added in the index of known endpoints...");
-                    QueryExecutionBase.endpointIndex.add(uri);
                     System.out.println("# Finished!\n");
-                } else { // the IRI is NOT a SPARQL endpoint
-                    System.out.println("# The IRI is NOT a SPARQL endpoint. ");
-                    System.out.println("# Checking the cache of retrieved resources...Cache size: " + QueryExecutionBase.cache.getIri2model().size());
+                } else {
+                    System.out.println("# The IRI \"" + uri + "\" does NOT exist in the index of known endpoints! ");
 
-                    // Check if the IRI exists in the cache of retrieved resources //
-                    if (QueryExecutionBase.cache.inCache(uri)) {
-                        System.out.println("# The IRI \"" + uri + "\" exists in the cache! Getting its RDF model from the cache and running the query...");
-                        Model model = QueryExecutionBase.cache.getModel(uri);
-                        QueryExecution qe = QueryExecutionFactory.create(query, model);
-                        ResultSet rs = qe.execSelect();
+                    // Check if the IRI corresponds to a SPARQL endpoint //
+                    if (ReadRDFFromIRI.isEndpoint(uri)) {
+                        System.out.println("# The IRI is a SPARQL endpoint. Sending the query...");
+                        HttpQuery httpQuery = configureQuery(uri, context, query);
+                        InputStream in = httpQuery.exec();
+                        ResultSet rs = ResultSetFactory.fromXML(in);
                         qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
+                        IO.close(in);
+                        System.out.println("# The SPARQL endpoint is being added in the index of known endpoints...");
+                        QueryExecutionBase.endpointIndex.add(uri);
                         System.out.println("# Finished!\n");
-                    } else {
-                        System.out.println("# The IRI \"" + uri + "\" does NOT exist in the cache! Retrieving its RDF data...");
+                    } else { // the IRI is NOT a SPARQL endpoint
+                        System.out.println("# The IRI is NOT a SPARQL endpoint. ");
+
                         ReadRDFFromIRI reader = new ReadRDFFromIRI(uri, query);
                         ResultSet rs = reader.getResultSet();
                         qIter = QueryIter.materialize(new QueryIteratorResultSet(rs));
@@ -243,7 +244,6 @@ public class Service {
                         System.out.println("# Finished!\n");
                     }
                 }
-
             }
         }
 
