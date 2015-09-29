@@ -24,6 +24,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.sparql.engine.QueryExecutionBase;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -44,7 +45,7 @@ public class ReadRDFFromIRI {
     private String iri; // The IRI of the SERVICE operator
     private Query query; // The query to run at the RDF data that may exist in the IRI.
     private ResultSet resultSet; // A ResultSet object containing the results of running the query to the IRI.
-    private QueryExecution qe; // A QueryExecution object for running the query to the model that corresponds to the IRI.
+    private QueryExecutionBase qe; // A QueryExecution object for running the query to the model that corresponds to the IRI.
     private String contentType; // The IRI content type
     private Model model; // The RDF model of the IRI
 
@@ -74,17 +75,17 @@ public class ReadRDFFromIRI {
         if (iri.toLowerCase().endsWith(".ntriples") || iri.toLowerCase().endsWith(".nt")) {
             System.out.println("# Reading a N-Triples file...");
             model.read(iri, "N-TRIPLE");
-            qe = QueryExecutionFactory.create(query, model);
+            qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
         } else if (iri.toLowerCase().endsWith(".n3")) {
             System.out.println("# Reading a Notation3 (N3) file...");
             model.read(iri);
-            qe = QueryExecutionFactory.create(query, model);
+            qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
         } else if (iri.toLowerCase().endsWith(".json") || iri.toLowerCase().endsWith(".jsod") || iri.toLowerCase().endsWith(".jsonld")) {
             System.out.println("# Trying to read a 'json-ld' file...");
             model.read(iri, "JSON-LD");
-            qe = QueryExecutionFactory.create(query, model);
+            qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
             resultSet = qe.execSelect();
         } else {
             setContentType(); // get the IRI content type
@@ -93,26 +94,26 @@ public class ReadRDFFromIRI {
                 System.out.println("# Checking if the URI contains 'RDFa' data...");
                 JenaRdfaReader.inject();
                 model.read(iri, "RDFA");
-                qe = QueryExecutionFactory.create(query, model);
+                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else if (contentType.contains("application/ld+json") || contentType.contains("application/json") || contentType.contains("application/json+ld")) {
                 System.out.println("# Trying to read a 'json-ld' file...");
                 model.read(iri, "JSON-LD");
-                qe = QueryExecutionFactory.create(query, model);
+                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else if (contentType.contains("application/n-triples")) {
                 System.out.println("# Reading a N-Triples file...");
                 model.read(iri, "N-TRIPLE");
-                qe = QueryExecutionFactory.create(query, model);
+                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else if (contentType.contains("text/n3")) {
                 System.out.println("# Reading a Notation3 (N3) file...");
                 model.read(iri);
-                qe = QueryExecutionFactory.create(query, model);
+                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else {
                 model.read(iri);
-                qe = QueryExecutionFactory.create(query, model);
+                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             }
         }
@@ -147,7 +148,7 @@ public class ReadRDFFromIRI {
      *
      */
     public void close() {
-        qe.close();
+        qe.close(false);
     }
 
     /**

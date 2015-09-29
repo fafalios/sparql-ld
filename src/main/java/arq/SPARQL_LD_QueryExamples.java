@@ -49,10 +49,9 @@ public class SPARQL_LD_QueryExamples {
         QUERY_getLocalTriples.append("SELECT * WHERE { ?x ?y ?z }");
 
         StringBuilder QUERY_getRDFa = new StringBuilder();
-        QUERY_getRDFa.append("SELECT DISTINCT ?y WHERE { ");
-        QUERY_getRDFa.append(" ?x1 ?y ?z1 . ");
+        QUERY_getRDFa.append("SELECT * WHERE { ");
         QUERY_getRDFa.append(" SERVICE <http://users.ics.forth.gr/~fafalios> { ");
-        QUERY_getRDFa.append("  ?x2 ?y ?z2 } ");
+        QUERY_getRDFa.append("  ?x ?y ?z } ");
         QUERY_getRDFa.append("}");
 
 

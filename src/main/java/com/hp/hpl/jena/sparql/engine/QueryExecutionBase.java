@@ -162,6 +162,30 @@ public class QueryExecutionBase implements QueryExecution {
         cache.clear(); // [SPARQL-LD]
     }
 
+    /*
+     * Allow to close a Query Execution without emptying the cache (for SPARQL-LD).
+     */
+    public void close(boolean emptyCache) {
+        if (emptyCache) {
+            close();
+        } else {
+            closed = true;
+            if (queryIterator != null) {
+                queryIterator.close();
+            }
+            if (plan != null) {
+                plan.close();
+            }
+            if (timeout1Callback != null) {
+                alarmClock.cancel(timeout1Callback);
+            }
+            if (timeout2Callback != null) {
+                alarmClock.cancel(timeout2Callback);
+            }
+        }
+
+    }
+
     @Override
     public boolean isClosed() {
         return closed;
