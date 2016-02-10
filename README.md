@@ -25,7 +25,12 @@ query the triples that may exist in the given resource.
 
 SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work with other Jena ARQ releases). 
 
-## How to cite SPARQL-LD
+
+### Demo
+
+A SPARQL endpoint that realizes SPARQL-LD is available online at: http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
+
+### How to cite SPARQL-LD
 Cite the ISWC'15 demo paper ([PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf)
  | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2015sparql.bib)):
 
@@ -37,9 +42,6 @@ Bethlehem, Pennsylvania, USA, October 11-15, 2015
 ```
 
 
-## Demo
-
-A SPARQL endpoint that realizes SPARQL-LD is available online at: http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
  
 ## Example Query
 
