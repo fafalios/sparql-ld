@@ -6,6 +6,7 @@ This Jena ARQ SERVICE extension allows to fetch, query and integrate in the same
 - *data embedded in Web pages as RDFa*
 - *data coming from JSON-LD files*
 - *data coming from dereferenceable URIs*
+- *data (in RDF) dynamically created by a Web Service*
 - *data coming by querying other SPARQL endpoints*
 
 by simply using the SERVICE operator of [SPARQL 1.1 Federated Query](http://www.w3.org/TR/sparql11-federated-query/).
