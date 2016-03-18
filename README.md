@@ -29,7 +29,9 @@ SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work w
 
 ### Demo
 
-A SPARQL endpoint that realizes SPARQL-LD is available online at: http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint.
+SPARQL endpoints that support SPARQL-LD are available in the following links:
+* http://users.ics.forth.gr/~fafalios/sparql-ld-endpoint
+* http://62.217.127.118:8080/sparql-ld-endpoint
 
 ### How to cite SPARQL-LD
 Cite the ISWC'15 demo paper: ([PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf)
