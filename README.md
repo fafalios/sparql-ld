@@ -40,16 +40,16 @@ P. Fafalios, T. Yannakis and Y. Tzitzikas,
 "Querying the Web of Data with SPARQL-LD", 
 20th International Conference on Theory and Practice of Digital Libraries (TPDL'16), 
 Hannover, Germany, September 5-9, 2016
-[PDF](http://l3s.de/~fafalios/files/pubs/fafalios_2016_tpdl.pdf)
- | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2016sparql-ld.bib)
+```
+[PDF](http://l3s.de/~fafalios/files/pubs/fafalios_2016_tpdl.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2016sparql-ld.bib)
  
+```
 P. Fafalios and Y. Tzitzikas,
 "SPARQL-LD: A SPARQL Extension for Fetching and Querying Linked Data", 
 14th International Semantic Web Conference (Demo Paper) - ISWC'15, 
 Bethlehem, Pennsylvania, USA, October 11-15, 2015 
-[PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf)
- | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2015sparql.bib)
 ```
+[PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2015sparql.bib)
 
 
  
