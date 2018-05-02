@@ -57,7 +57,7 @@ T. Yannakis, P. Fafalios, and Y. Tzitzikas,
 2nd Workshop on Querying the Web of Data (QuWeDa), in conjunction with the 15th Extended Semantic Web Conference (ESWC'18), 
 Heraklion, Greece, June 3-7, 2018
 ``` 
-[PDF](http://l3s.de/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2018_QuWeDa.bib)
+[PDF](http://l3s.de/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2018_QuWeDa.bib) | [SOURCE CODE](https://github.com/TYannakis/SPARQL-LD-Query-Optimizer)
 
  
 ## Example Query
