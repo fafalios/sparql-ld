@@ -51,6 +51,13 @@ Bethlehem, Pennsylvania, USA, October 11-15, 2015
 ``` 
 [PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2015sparql.bib)
 
+```
+T. Yannakis, P. Fafalios, and Y. Tzitzikas,
+"Heuristics-based Query Reordering for Federated Queries in SPARQL 1.1 and SPARQL-LD", 
+2nd Workshop on Querying the Web of Data (QuWeDa), in conjunction with the 15th Extended Semantic Web Conference (ESWC'18), 
+Heraklion, Greece, June 3-7, 2018
+``` 
+[PDF](http://l3s.de/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2018_QuWeDa.bib)
 
  
 ## Example Query
