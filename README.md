@@ -31,7 +31,7 @@ SPARQL-LD has been tested with Jena 2.13.0 ARQ (nevertheless, it may also work w
 
 SPARQL endpoints that support SPARQL-LD are available in the following links:
 * http://62.217.127.118:8080/sparql-ld-endpoint/
-* http://83.212.107.202/sparql-ld-endpoint/
+* http://62.217.127.118:8080/sparql-ld-endpoint2/
 
 ### Related publications
 
