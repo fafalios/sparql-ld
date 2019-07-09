@@ -35,6 +35,7 @@ SPARQL endpoints that support SPARQL-LD are available in the following links:
 
 ### Related publications
 
+Full Paper describing SPARQL-LD:
 ```
 P. Fafalios, T. Yannakis and Y. Tzitzikas,
 "Querying the Web of Data with SPARQL-LD", 
@@ -43,6 +44,7 @@ Hannover, Germany, September 5-9, 2016
 ``` 
 [PDF](http://l3s.de/~fafalios/files/pubs/fafalios_2016_tpdl.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2016sparql-ld.bib)
  
+Demo Paper describing SPARQL-LD:
 ```
 P. Fafalios and Y. Tzitzikas,
 "SPARQL-LD: A SPARQL Extension for Fetching and Querying Linked Data", 
@@ -51,6 +53,7 @@ Bethlehem, Pennsylvania, USA, October 11-15, 2015
 ``` 
 [PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2015_sparql-ld.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2015sparql.bib)
 
+Paper on optimizing the execution of SPARQL-LD queries through query reordering: 
 ```
 T. Yannakis, P. Fafalios, and Y. Tzitzikas,
 "Heuristics-based Query Reordering for Federated Queries in SPARQL 1.1 and SPARQL-LD", 
@@ -59,6 +62,15 @@ Heraklion, Greece, June 3-7, 2018
 ``` 
 [PDF](http://l3s.de/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2018_QuWeDa.bib) | [SOURCE CODE](https://github.com/TYannakis/SPARQL-LD-Query-Optimizer)
 
+Paper on how a SPARQL query (to be evaluated on a SPARQL endpoint) can be transformed to a SPARQL-LD query that is answered through 
+link traversal, without accessing the endpoint:
+```
+P. Fafalios, and Y. Tzitzikas,
+"How Many and What Types of SPARQL Queries can be Answered through Zero-Knowledge Link Traversal?", 
+34th ACM/SIGAPP Symposium On Applied Computing (Semantic Web and Applications track), 
+Limassol, Cyprus, April 8-12, 2019
+``` 
+[PDF](http://users.ics.forth.gr/~fafalios/files/pubs/SAC2019_ZeroKnowledgeLinkTraversal.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2019_SAC_LinkTraversal.bib) | [SOURCE CODE](https://github.com/fafalios/LDaQ)
  
 ## Example Query
 
