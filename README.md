@@ -116,7 +116,7 @@ We have also updated the following 2 classes of Jena 2.13.0 ARQ:
 This repository contains only the above 6 classes. 
 We also provide a zip containing the *original* Jena 2.13.0 ARQ source code
 (as downloaded from [https://jena.apache.org/download](https://jena.apache.org/download) in April 17, 2015)
-as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPARQL-LD-1.0.jar**). 
+as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPARQL-LD-1.1.jar**) and the corresponding extended Jena sources (**jena-arq-2.13.0-sources_SPARQL-LD-1.1.jar**). 
 
 ## Installation
 
