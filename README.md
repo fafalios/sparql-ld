@@ -120,6 +120,12 @@ as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPA
 
 ## Installation
 
+- Directly use the provided (already built) extended Jena ARQ jar: 
+
+   **jena-arq-2.13.0_SPARQL-LD-1.1.jar**
+
+OR
+
 - Download the original Jena 2.13.0 ARQ source code
 - Add the 4 new classes
 - Replace the 2 updated classes
@@ -141,8 +147,3 @@ as well as the extended, already built, Jena ARQ JAR file (**jena-arq-2.13.0_SPA
 - Build the sources
 - Try to run the main class "arq.SPARQL_LD_QueryExamples"
 
-or:
-
-- Directly use the provided (already built) extended Jena ARQ jar: 
-
-**jena-arq-2.13.0_SPARQL-LD-1.0.jar**
