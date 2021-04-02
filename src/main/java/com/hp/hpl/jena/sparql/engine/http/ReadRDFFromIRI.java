@@ -31,6 +31,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.jena.riot.web.HttpOp;
 import org.semarglproject.jena.rdf.rdfa.JenaRdfaReader;
 
 /**
@@ -91,11 +95,25 @@ public class ReadRDFFromIRI {
             setContentType(); // get the IRI content type
             System.out.println("# IRI Content Type: " + contentType);
             if (contentType.contains("text/html") || contentType.contains("application/xhtml+xml")) {
-                System.out.println("# Checking if the URI contains 'RDFa' data...");
-                JenaRdfaReader.inject();
-                model.read(iri, "RDFA");
-                qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
-                resultSet = qe.execSelect();
+
+                try {
+                    System.out.println("# Checking if the URI can be resolved...");
+                    final HttpClient httpclient = new DefaultHttpClient();
+                    final org.apache.http.params.HttpParams params = httpclient.getParams();
+                    params.setParameter(HttpConnectionParams.CONNECTION_TIMEOUT, 1000);
+                    params.setParameter(HttpConnectionParams.SO_TIMEOUT, 5000);
+                    HttpOp.setDefaultHttpClient(httpclient);
+                    model.read(iri);
+                    qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
+                    resultSet = qe.execSelect();
+                } catch (Exception e) {
+                    System.out.println("# Checking if the URI contains 'RDFa' data...");
+                    JenaRdfaReader.inject();
+                    model.read(iri, "RDFA");
+                    qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
+                    resultSet = qe.execSelect();
+                }
+
             } else if (contentType.contains("application/ld+json") || contentType.contains("application/json") || contentType.contains("application/json+ld")) {
                 System.out.println("# Trying to read a 'json-ld' file...");
                 model.read(iri, "JSON-LD");
@@ -112,6 +130,7 @@ public class ReadRDFFromIRI {
                 qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
             } else {
+                System.out.println("# Reading an RDF/XML file...");
                 model.read(iri);
                 qe = (QueryExecutionBase) QueryExecutionFactory.create(query, model);
                 resultSet = qe.execSelect();
@@ -129,9 +148,9 @@ public class ReadRDFFromIRI {
         try {
             URL url = new URL(iri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("HEAD");
-            connection.setRequestProperty("ACCEPT", "application/rdf+xml");
+            connection.setRequestProperty("ACCEPT", "application/rdf+xml, text/n3, application/n-triples, text/rdf+n3, application/rdf+n3, application/rdf");
             connection.connect();
+            //connection.setConnectTimeout(2000);
             contentType = connection.getContentType();
             if (contentType == null) {
                 contentType = "";
