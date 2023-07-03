@@ -41,7 +41,7 @@ P. Fafalios, T. Yannakis and Y. Tzitzikas,
 20th International Conference on Theory and Practice of Digital Libraries (TPDL'16), 
 Hannover, Germany, September 5-9, 2016
 ``` 
-[PDF](http://l3s.de/~fafalios/files/pubs/fafalios_2016_tpdl.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2016sparql-ld.bib)
+[PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios_2016_tpdl.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2016sparql-ld.bib)
  
 Demo Paper describing SPARQL-LD:
 ```
@@ -59,7 +59,7 @@ T. Yannakis, P. Fafalios, and Y. Tzitzikas,
 2nd Workshop on Querying the Web of Data (QuWeDa), in conjunction with the 15th Extended Semantic Web Conference (ESWC'18), 
 Heraklion, Greece, June 3-7, 2018
 ``` 
-[PDF](http://l3s.de/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://l3s.de/~fafalios/files/bibs/fafalios2018_QuWeDa.bib) | [SOURCE CODE](https://github.com/TYannakis/SPARQL-LD-Query-Optimizer)
+[PDF](http://users.ics.forth.gr/~fafalios/files/pubs/fafalios2018_QuWeDa.pdf) | [BIB](http://users.ics.forth.gr/~fafalios/files/bibs/fafalios2018_QuWeDa.bib) | [SOURCE CODE](https://github.com/TYannakis/SPARQL-LD-Query-Optimizer)
 
 Paper on how a SPARQL query (to be evaluated on a SPARQL endpoint) can be transformed to a SPARQL-LD query that is answered through 
 link traversal, without accessing the endpoint:
